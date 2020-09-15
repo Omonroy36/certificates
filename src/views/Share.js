@@ -8,6 +8,7 @@ import * as dayjs from 'dayjs';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import DiplomaDos from "../diploma/pdf/default";
 import  strings from "../diploma/strings";
+import {Helmet} from "react-helmet";
 
 const Share = ({ match }) => {
     function getUrlParameter(name) {
@@ -36,6 +37,15 @@ const Share = ({ match }) => {
         } else Notify.error("Specify a token");
     }, [])
     return (
+        <>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>{"4Geeks Academy's Student Certificate"}</title>
+            <meta property="og:title" content="4Geeks Academy's Students Certificate" />
+            <meta property="og:description" content="Certificates verification of 4Geeks Academy Students" />
+            <meta property="og:image" content={"./test.jpg"} />
+            <meta property="og:url" content={window.location.href} />
+        </Helmet>
         <div className="container-fluid share">
             <div className="row">
                 <div className="col-12">
@@ -60,10 +70,10 @@ const Share = ({ match }) => {
                 <div className="col-md-4 col-12">
                     <div className="row pb-2">
                         <div className="col-12">
-                            <Button className="w-100" icon="arrow" variant="primary">
+                              <Button className="w-100" icon="arrow" variant="primary" href={`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`}>
                                 <img src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" />
                                 <Button.Label>Share on LinkedIn</Button.Label>
-                            </Button>
+                            </Button>  
                         </div>
                     </div>
                     <div className="row pb-2">
@@ -135,6 +145,7 @@ const Share = ({ match }) => {
             </div>   
         </div>
         </div>
+        </>
     )
 }
 

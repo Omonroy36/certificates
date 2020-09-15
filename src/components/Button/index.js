@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import styles from './style.scss';
 import PropTypes from 'prop-types';
 
-const SmartButton = ({ children, variant, onClick, icon, to, className,onHover, ...rest }) => {
+const SmartButton = ({ children, variant, onClick, icon, to,href, className,onHover, ...rest }) => {
      
      return(
          <>
@@ -16,6 +16,10 @@ const SmartButton = ({ children, variant, onClick, icon, to, className,onHover, 
                         {icon ? <Icon name={icon} size='md' /> : ""}
                     </Link> 
                    :
+                   href ? <a href={href} target="_blank" rel="noopener noreferrer" className={`${!onHover ? "": "btn-outline-" + variant} shadow-one btn ${className}`} {...rest}>
+                          {children}
+                        {icon ? <Icon name={icon} size='md' /> : ""}
+                    </a> :
                 <Button variant={`${!onHover ? "": "outline-" + variant} shadow-one btn ${className}`} onClick={onClick} {...rest}>
                     {children}
                     {icon ? <Icon name={icon} size='md' /> : ""}
