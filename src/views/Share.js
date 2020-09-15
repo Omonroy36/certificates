@@ -5,10 +5,10 @@ import Button from "../components/Button";
 import Icon from "../components/Icon";
 import Link from "../components/Link";
 import * as dayjs from 'dayjs';
-import { PDFDownloadLink } from '@react-pdf/renderer';
 import DiplomaDos from "../diploma/pdf/default";
 import  strings from "../diploma/strings";
 import {Helmet} from "react-helmet";
+import Spinner from 'react-spinner-material';
 
 const Share = ({ match }) => {
     function getUrlParameter(name) {
@@ -38,6 +38,8 @@ const Share = ({ match }) => {
     }, [])
     return (
         <>
+        {!data ? <Spinner size={120} spinnerColor={"#44B2E4"} spinnerWidth={2} visible={true} /> :
+        <div>
         <Helmet>
             <meta charSet="utf-8" />
             <title>{"4Geeks Academy's Student Certificate"}</title>
@@ -45,6 +47,11 @@ const Share = ({ match }) => {
             <meta property="og:description" content="Certificates verification of 4Geeks Academy Students" />
             <meta property="og:image" content={"./test.jpg"} />
             <meta property="og:url" content={window.location.href} />
+            <meta name="twitter:title" content={"4Geeks Academy's Student Certificate"} />
+            <meta name="twitter:description" content={"Certificates verification of 4Geeks Academy Students"} />
+            <meta name="twitter:image" content={"./test.jpg"} />
+            <meta name="twitter:image:alt" content="Alt text for image" />
+            <meta name="twitter:site" content="@4geeksacademy" />
         </Helmet>
         <div className="container-fluid share">
             <div className="row">
@@ -87,7 +94,7 @@ const Share = ({ match }) => {
                     <div className="row pb-2">
                         <div className="col-12">
                             <div class="card shadow-one mb-3 d-flex" >
-                                <img src="https://www.flaticon.es/svg/static/icons/svg/74/74472.svg" width="40px" height="40px" className="mr-3"/>
+                                <img src="https://www.flaticon.es/svg/static/icons/svg/74/74472.svg" width="40px" height="40px" className="mr-3 mt-1"/>
                                 <div>
                                     <p>{data && data.user.first_name + " " + data.user.last_name}</p>
                                     <Link href="/#" >view all certificates</Link>
@@ -145,6 +152,8 @@ const Share = ({ match }) => {
             </div>   
         </div>
         </div>
+        </div>
+        }
         </>
     )
 }
